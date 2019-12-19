@@ -8,6 +8,29 @@ group = 'com.stockprice.consumer'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
+sourceSets {
+	testInteg {
+		java {
+			compileClasspath += main.output + test.output
+			runtimeClasspath += main.output + test.output
+			srcDir file('src/testInteg/java')
+		}
+		resources.srcDir file('src/testInteg/resources')
+	}
+}
+
+configurations {
+	testIntegCompile.extendsFrom testCompile
+	testIntegCompile.extendsFrom  testImplementation
+	testIntegRuntime.extendsFrom testRuntime
+}
+
+task testInteg(type: Test) {
+	testClassesDirs = sourceSets.testInteg.output.classesDirs
+	classpath = sourceSets.testInteg.runtimeClasspath
+}
+
+
 repositories {
 	mavenCentral()
 	maven { url 'https://repo.spring.io/milestone' }
@@ -33,6 +56,8 @@ dependencies {
 	}
 	testImplementation 'org.springframework.cloud:spring-cloud-stream-test-support'
 	testImplementation 'org.springframework.security:spring-security-test'
+	testCompile 'io.cucumber:cucumber-java8:4.7.4'
+	testCompile 'io.cucumber:cucumber-junit:4.7.4'
 }
 
 dependencyManagement {
@@ -44,3 +69,8 @@ dependencyManagement {
 test {
 	useJUnitPlatform()
 }
+
+check.dependsOn testInteg
+testInteg.mustRunAfter test
+
+
