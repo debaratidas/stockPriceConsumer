@@ -21,13 +21,14 @@ public class LogonController {
      @Autowired
      UserProfileRepo userProfileRepo;
 
-    @RequestMapping(value = "/login" , method = RequestMethod.POST)
+    @RequestMapping(value = "/login" , method = RequestMethod.GET)
     public boolean validateLogin(@RequestParam(value = "loginId", required = false) String userId,
                                  @RequestParam(value = "password", required = false) String password){
-        Optional<UserLogin> userLogin =userRepo.findById(userId);
-        if(userLogin.isPresent()){
-            return userLogin.get().getPassWord().equals(password);
+        UserLogin userLogin =userRepo.findByUserId(userId);
+        if(userLogin!=null && userLogin.getPassWord()!=null) {
+            return userLogin.getPassWord().equals(password);
         }
+
         return false;
     }
     @RequestMapping(value = "/addRegistration" , method = RequestMethod.POST)
@@ -39,12 +40,8 @@ public class LogonController {
                                          @RequestParam(value = "newPassword", required = false) String newPassword,
                                          @RequestParam(value = "retypePassword", required = false) String retypePassword
     ) {
-        if(StringUtils.isEmpty(newPassword)
-        ||StringUtils.isEmpty(retypePassword) ){
-            return "Password cannot be empty, please enter password";
-        }else if(!newPassword.equals(retypePassword)){
-            return "Password does not match";
-        }
+        String x = validate(newPassword, retypePassword);
+        if (x != null) return x;
         UserProfile userProfile =  new UserProfile();
         userProfile.setName(name);
         userProfile.setUserId(userId);
@@ -57,6 +54,16 @@ public class LogonController {
         userLogin.setUserId(userId);
         userRepo.save(userLogin);
          return "Success";
+    }
+
+    private String validate( String newPassword,  String retypePassword) {
+        if(StringUtils.isEmpty(newPassword)
+        ||StringUtils.isEmpty(retypePassword) ){
+            return "Password cannot be empty, please enter password";
+        }else if(!newPassword.equals(retypePassword)){
+            return "Password does not match";
+        }
+        return null;
     }
 
     @RequestMapping(value = "/getUserProfile" , method = RequestMethod.GET)

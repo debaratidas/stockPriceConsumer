@@ -58,6 +58,7 @@ dependencies {
 	testImplementation 'org.springframework.security:spring-security-test'
 	testCompile 'io.cucumber:cucumber-java8:4.7.4'
 	testCompile 'io.cucumber:cucumber-junit:4.7.4'
+	testCompile 'io.cucumber:cucumber-spring:4.7.4'
 }
 
 dependencyManagement {
