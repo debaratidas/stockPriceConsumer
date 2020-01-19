@@ -11,7 +11,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(features = "src/testInteg/resources/features",
-        glue={"test","config"})
+        glue={"test","config"},
+        plugin = {"html:target/cucumber-html-report", "json:target/cucumber-json-report.json" })
 @SpringBootTest
 @Import(BeanConfiguration.class)
 public class CucumberTestRunner {
