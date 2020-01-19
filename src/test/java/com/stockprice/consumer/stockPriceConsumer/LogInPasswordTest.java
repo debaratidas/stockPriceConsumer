@@ -1,5 +1,4 @@
 package com.stockprice.consumer.stockPriceConsumer;
-import com.stockprice.consumer.stockPriceConsumer.repo.LoginPassword;
 import org.junit.Assert;
 import org.junit.Test;
 
