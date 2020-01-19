@@ -11,6 +11,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.java8.En;
+import org.junit.Assert;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -98,7 +99,9 @@ public class LoginStepDef implements En {
     @Then("It should return (.+)")
     public void itShouldReturnTrue(String result) throws  Exception{
 
-                mvcResult.getResponse().getContentAsString().equals(result);
+        Assert.assertEquals(result,mvcResult.getResponse().getContentAsString());
+
+
 
     }
 }

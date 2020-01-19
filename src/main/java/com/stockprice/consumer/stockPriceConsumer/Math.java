@@ -18,7 +18,8 @@ public class Math {
     public double divide (double a, double b){
         return a/b;
     }
-
+//systax of funtion
+    // {access specifier}  {return type} {name of function}( input variables ) { body };
     public double multiply(double a, double b){
         return a*b;
     }
