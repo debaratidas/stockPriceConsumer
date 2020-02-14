@@ -15,7 +15,7 @@ public class IceCreamMaker {
 
     private IceCream fillContainer(String container, List<String> materials) {
         IceCream iceCream = new IceCream();
-        iceCream.setContainerType(container);
+        iceCream.setContainertype(container);
         String typeOfIcream ="";
         for(String material:materials){
             typeOfIcream=typeOfIcream+material;
@@ -34,7 +34,7 @@ public class IceCreamMaker {
             materials.add("milk");
             materials.add("mango");
         }
-        return materials;
+        return material;
     }
 
     private String receipe(String typeOfIceCream) {
