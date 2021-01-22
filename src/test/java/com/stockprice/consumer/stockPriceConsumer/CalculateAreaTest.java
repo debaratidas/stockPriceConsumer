@@ -22,7 +22,7 @@ public class CalculateAreaTest {
     public void  testCircleArea(){
         CalculateArea y = new CalculateArea();
         double area = Math.ceil( y.calculateAreaOfCircle(8.0));
-        Assert.assertEquals(  201, area,1);
+        Assert.assertEquals(  201, area,1l);
     }
 
 

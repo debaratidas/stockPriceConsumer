@@ -23,7 +23,18 @@ public class Math {
     public double multiply(double a, double b){
         return a*b;
     }
+//    public double squareRoot(double a) { return a
 
+    public int factorial(int n){
+        if (n==0) return 1;
+        int result =1;
+        for ( int i=1;i<=n;){
+            result=i*result;
+            i=i+1;
+//        else return( n* factorial(n-1));
+        
+        }
+        return result;
 
-
+    }
 }

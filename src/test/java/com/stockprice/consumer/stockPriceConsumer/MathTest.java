@@ -14,6 +14,8 @@ public class MathTest {
 //        testDivision();
 //        testMultiplication();
 //        testDivisionbyZero();
+//        testsquareRoot();
+//          testfactorial();
 //
 //    }
 //     @Test
@@ -72,5 +74,13 @@ public class MathTest {
 //        } else {
 //            System.out.println("Fail divide");
 //        }
+
+    }
+
+    @Test
+    public void testfactorial(){
+        Math math = new Math();
+        int actual = math.factorial(4);
+        Assert.assertEquals(24, actual,24);
     }
 }
