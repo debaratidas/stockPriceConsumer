@@ -1,8 +1,9 @@
 package com.stockprice.consumer.stockPriceConsumer;
 
 import myjava.learning.CalculateArea;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 
 import java.lang.Math;
 
@@ -14,7 +15,7 @@ public class CalculateAreaTest {
 
         CalculateArea x = new CalculateArea();
         int area = x.calculateAreaOfRectanle(10,8);
-        Assert.assertEquals(80, area);
+        Assertions.assertEquals(80, area);
 
     }
 
@@ -22,7 +23,7 @@ public class CalculateAreaTest {
     public void  testCircleArea(){
         CalculateArea y = new CalculateArea();
         double area = Math.ceil( y.calculateAreaOfCircle(8.0));
-        Assert.assertEquals(  201, area,1l);
+        Assertions.assertEquals(  201, area,1l);
     }
 
 

@@ -1,9 +1,6 @@
 package com.stockprice.consumer.stockPriceConsumer.controller;
 
-import com.stockprice.consumer.stockPriceConsumer.model.UserLogin;
-import com.stockprice.consumer.stockPriceConsumer.model.UserProfile;
-import com.stockprice.consumer.stockPriceConsumer.repo.UserProfileRepo;
-import com.stockprice.consumer.stockPriceConsumer.repo.UserRepo;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,18 +13,18 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/stockprice")
 public class LogonController {
-     @Autowired
-     UserRepo userRepo;
-     @Autowired
-     UserProfileRepo userProfileRepo;
+//     @Autowired
+//     UserRepo userRepo;
+//     @Autowired
+//     UserProfileRepo userProfileRepo;
 
     @RequestMapping(value = "/login" , method = RequestMethod.GET)
     public boolean validateLogin(@RequestParam(value = "loginId", required = false) String userId,
                                  @RequestParam(value = "password", required = false) String password){
-        UserLogin userLogin =userRepo.findByUserId(userId);
-        if(userLogin!=null && userLogin.getPassWord()!=null) {
-            return userLogin.getPassWord().equals(password);
-        }
+//        UserLogin userLogin =userRepo.findByUserId(userId);
+//        if(userLogin!=null && userLogin.getPassWord()!=null) {
+//            return userLogin.getPassWord().equals(password);
+//        }
 
         return false;
     }
@@ -41,18 +38,18 @@ public class LogonController {
                                          @RequestParam(value = "retypePassword", required = false) String retypePassword
     ) {
         String x = validate(newPassword, retypePassword);
-        if (x != null) return x;
-        UserProfile userProfile =  new UserProfile();
-        userProfile.setName(name);
-        userProfile.setUserId(userId);
-        userProfile.setLastName(lastName);
-        userProfile.setPhoneNumber(phoneNumber);
-        userProfile.setEmailId(email);
-        userProfileRepo.save(userProfile);
-        UserLogin userLogin = new UserLogin();
-        userLogin.setPassWord(newPassword);
-        userLogin.setUserId(userId);
-        userRepo.save(userLogin);
+//        if (x != null) return x;
+//        UserProfile userProfile =  new UserProfile();
+//        userProfile.setName(name);
+//        userProfile.setUserId(userId);
+//        userProfile.setLastName(lastName);
+//        userProfile.setPhoneNumber(phoneNumber);
+//        userProfile.setEmailId(email);
+//        userProfileRepo.save(userProfile);
+//        UserLogin userLogin = new UserLogin();
+//        userLogin.setPassWord(newPassword);
+//        userLogin.setUserId(userId);
+//        userRepo.save(userLogin);
          return "Success";
     }
 
@@ -67,12 +64,12 @@ public class LogonController {
     }
 
     @RequestMapping(value = "/getUserProfile" , method = RequestMethod.GET)
-    public UserProfile getUserProfile(@RequestParam(value = "userId", required = false) String userId
+    public String getUserProfile(@RequestParam(value = "userId", required = false) String userId
     ) {
-        Optional<UserProfile> userProfileOptional = userProfileRepo.findById(userId);
-        if(userProfileOptional.isPresent()) {
-            return userProfileOptional.get();
-        }
+//        Optional<UserProfile> userProfileOptional = userProfileRepo.findById(userId);
+//        if(userProfileOptional.isPresent()) {
+//            return userProfileOptional.get();
+//        }
         return null;
     }
 
@@ -82,19 +79,19 @@ public class LogonController {
                                       @RequestParam(value = "userId", required = false) String newPassword,
                                       @RequestParam(value = "userId", required = false) String retypePassword
     ) {
-        Optional<UserLogin> userLoginOptional =userRepo.findById(userId);
-        if(userLoginOptional.isPresent()){
-            UserLogin userLogin = userLoginOptional.get();
-            String password = userLogin.getPassWord();
-            if(!oldPassword.equals(password)) {
-                return  "Please enter correct userId and Password";
-            }else if(!newPassword.equals(retypePassword)){
-                return "Password does not match";
-            }
-            userLogin.setPassWord(newPassword);
-            userRepo.save(userLogin);
-            return "Password has been changed successfully";
-        }
+//        Optional<UserLogin> userLoginOptional =userRepo.findById(userId);
+//        if(userLoginOptional.isPresent()){
+//            UserLogin userLogin = userLoginOptional.get();
+//            String password = userLogin.getPassWord();
+//            if(!oldPassword.equals(password)) {
+//                return  "Please enter correct userId and Password";
+//            }else if(!newPassword.equals(retypePassword)){
+//                return "Password does not match";
+//            }
+//            userLogin.setPassWord(newPassword);
+//            userRepo.save(userLogin);
+//            return "Password has been changed successfully";
+//        }
         return "Please enter correct userId and Password";
     }
 

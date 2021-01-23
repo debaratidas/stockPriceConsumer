@@ -1,7 +1,8 @@
 package com.stockprice.consumer.stockPriceConsumer;
 
-import org.junit.Assert;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
+import org.junit.platform.commons.annotation.Testable;
 
 public class IceCreamMakerTest {
     @Test
